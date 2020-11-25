@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import "./header.styles.scss";
 import { ReactComponent as Logo } from "../../assets/crown.svg";
 import { auth } from "../../firebase/firebase.utils";
+import { connect } from "react-redux";
 
 const Header = ({ currentUser }) => {
   return (
@@ -31,4 +32,10 @@ const Header = ({ currentUser }) => {
   );
 };
 
-export default Header;
+const mapStateToProps = (state) => ({
+  currentUser: state.user.currentUser,
+});
+
+// connect is an higher order component that allow us acess redux. it can take in two functions,
+//one compulsory and the other not compulsory.
+export default connect(mapStateToProps)(Header);
